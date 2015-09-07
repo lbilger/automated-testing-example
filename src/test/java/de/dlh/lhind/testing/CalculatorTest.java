@@ -1,17 +1,20 @@
 package de.dlh.lhind.testing;
 
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
 public class CalculatorTest {
 
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
+    
     @Mock
     private Parser parser;
 
