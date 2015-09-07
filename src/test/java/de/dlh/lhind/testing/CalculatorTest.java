@@ -8,7 +8,7 @@ import org.mockito.junit.MockitoRule;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doReturn;
 
 public class CalculatorTest {
 
@@ -21,7 +21,7 @@ public class CalculatorTest {
     @Test
     public void returnsExpectedResultForInput() {
         Calculator calculator = new Calculator(parser);
-        when(parser.parse("1,3,0")).thenReturn(asList(1, 3, 0));
+        doReturn(asList(1, 3, 0)).when(parser).parse("1,3,0");
 
         int result = calculator.calculate("1,3,0");
 
