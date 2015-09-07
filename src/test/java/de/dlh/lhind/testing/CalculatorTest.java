@@ -1,21 +1,15 @@
 package de.dlh.lhind.testing;
 
-import com.google.common.base.Function;
-import com.google.common.base.Splitter;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.mockito.stubbing.Answer;
 
-import static com.google.common.collect.Iterables.transform;
-import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.verify;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 
 public class CalculatorTest {
 
@@ -27,21 +21,13 @@ public class CalculatorTest {
 
     @Test
     public void returnsExpectedResultForInput() {
+        given(parser.parse("1,3,0")).willReturn(asList(1, 3, 0));
         Calculator calculator = new Calculator(parser);
-        doAnswer(new Answer() {
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                return newArrayList(transform(Splitter.on(",").split((String) invocation.getArguments()[0]),
-                        new Function<String, Integer>() {
-                            public Integer apply(String input) {
-                                return Integer.valueOf(input);
-                            }
-                        }));
-            }
-        }).when(parser).parse(anyString());
 
+        // when
         int result = calculator.calculate("1,3,0");
 
+        then(parser).should().parse("1,3,0");
         assertEquals(4, result);
-        verify(parser).parse("1,3,0");
     }
 }
