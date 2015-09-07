@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 public class CommaSeparatedParserTest {
     private CommaSeparatedParser commaSeparatedParser = new CommaSeparatedParser();
@@ -14,17 +13,17 @@ public class CommaSeparatedParserTest {
     public void returnsEmptyListForEmptyString() {
         List<Integer> result = commaSeparatedParser.parse("");
 
-        assertThat(result, is(notNullValue()));
-        assertThat(result, hasSize(0));
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(0);
         // or:
-        assertThat(result, is(empty()));
+        assertThat(result).isEmpty();
     }
 
     @Test
     public void parsesCommaSeparatedNumbers() {
         List<Integer> result = commaSeparatedParser.parse("1,3,0");
 
-        assertThat(result, is(notNullValue()));
-        assertThat(result, contains(1, 3, 0));
+        assertThat(result).isNotNull();
+        assertThat(result).containsExactly(1, 3, 0);
     }
 }
