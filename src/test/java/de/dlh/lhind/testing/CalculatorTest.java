@@ -15,6 +15,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.verify;
 
 public class CalculatorTest {
 
@@ -41,5 +42,6 @@ public class CalculatorTest {
         int result = calculator.calculate("1,3,0");
 
         assertEquals(4, result);
+        verify(parser).parse("1,3,0");
     }
 }
