@@ -1,33 +1,31 @@
 package de.dlh.lhind.testing;
 
+import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
+import org.mockito.Mock;
+import org.needle4j.annotation.ObjectUnderTest;
+import org.needle4j.junit.NeedleRule;
 
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static java.util.Arrays.asList;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 public class CalculatorTest {
+    @Rule
+    public NeedleRule needleRule = new NeedleRule();
+
+    @ObjectUnderTest
+    private Calculator calculator;
+
+    @Mock
+    private Parser parser;
 
     @Test
     public void returnsExpectedResultForInput() {
-        Parser parser = spy(new CommaSeparatedParser());
-        Calculator calculator = new Calculator(parser);
-        doAnswer(new Answer<List<Integer>>() {
-            @SuppressWarnings("unchecked")
-            public List<Integer> answer(InvocationOnMock invocation) throws Throwable {
-                System.out.println("Parser spy called with parameters " + invocation.getArguments()[0]);
-                return (List<Integer>) invocation.callRealMethod();
-            }
-        }).when(parser).parse(anyString());
+        when(parser.parse("1,3,0")).thenReturn(asList(1, 3, 0));
         
         int result = calculator.calculate("1,3,0");
 
-        assertEquals(4, result);
-        verify(parser).parse("1,3,0");
-        verifyNoMoreInteractions(parser);
+        assertThat(result).isEqualTo(4);
     }
 }
