@@ -1,5 +1,7 @@
 package de.dlh.lhind.testing;
 
+import com.google.common.base.Strings;
+
 /**
  * Adds up numbers from an input string.
  */
@@ -12,6 +14,6 @@ public class Calculator {
      * @return the sum of all numbers found in the input string
      */
     public int calculate(String input) {
-        return 0;
+        return Strings.isNullOrEmpty(input) ? 0 : Integer.valueOf(input);
     }
 }
