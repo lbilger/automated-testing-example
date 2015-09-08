@@ -1,10 +1,12 @@
 package de.dlh.lhind.testing;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
  * Adds up numbers from an input string.
  */
+@RequestScoped
 public class Calculator {
 
     @Inject

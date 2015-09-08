@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Calculator</title>
+</h:head>
+
+<h:body>
+    <h:form id="calculatorForm">
+        <section>
+            <h:outputLabel value="Input String: " for="input"/>
+            <h:inputText id="input" value="#{calculatorController.input}"/>
+            <h:commandButton id="calculate" value="Calculate" actionListener="#{calculatorController.calculate}"/>
+        </section>
+        <section>
+            <h:outputLabel value="Result: " for="output"/>
+            <h:outputText id="output" value="#{calculatorController.output}"/>
+        </section>
+    </h:form>
+</h:body>
+</html>
