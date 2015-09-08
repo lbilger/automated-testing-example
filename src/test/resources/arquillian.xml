@@ -10,4 +10,7 @@
             <property name="managementPort">${arquillian.container.jboss.managementPort}</property>
         </configuration>
     </container>
+    <extension qualifier="webdriver">
+        <property name="browser">${webdriver.browser}</property>
+    </extension>
 </arquillian>
