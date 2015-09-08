@@ -1,0 +1,13 @@
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://jboss.org/schema/arquillian"
+            xsi:schemaLocation=" http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+    <container qualifier="jboss" default="true">
+        <configuration>
+            <!-- for managed JBoss -->
+            <property name="jbossHome">${arquillian.container.jboss.jbossHome}</property>
+            <property name="javaVmArguments">${arquillian.container.jboss.javaVmArguments}</property>
+
+            <!-- for managed/remote JBoss-->
+            <property name="managementPort">${arquillian.container.jboss.managementPort}</property>
+        </configuration>
+    </container>
+</arquillian>
