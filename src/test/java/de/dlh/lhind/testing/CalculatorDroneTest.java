@@ -2,8 +2,8 @@ package de.dlh.lhind.testing;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.page.InitialPage;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -12,11 +12,9 @@ import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,8 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CalculatorDroneTest {
     @Drone
     private WebDriver browser;
-    @ArquillianResource
-    private URL url;
 
     @Deployment(testable = false)
     public static Archive createDeployment() {
@@ -42,10 +38,7 @@ public class CalculatorDroneTest {
     }
 
     @Test
-    public void webDriverAndUrlAreInjected() throws MalformedURLException {
-        browser.get(new URL(url, "calculator.jsf").toExternalForm());
-        CalculatorPage calculatorPage = PageFactory.initElements(browser, CalculatorPage.class);
-
+    public void webDriverAndUrlAreInjected(@InitialPage CalculatorPage calculatorPage) throws MalformedURLException {
         calculatorPage.typeInput("1,3,0");
         calculatorPage.calculate();
 
