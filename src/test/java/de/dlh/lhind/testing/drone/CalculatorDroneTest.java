@@ -1,5 +1,9 @@
-package de.dlh.lhind.testing;
+package de.dlh.lhind.testing.drone;
 
+import de.dlh.lhind.testing.Calculator;
+import de.dlh.lhind.testing.CalculatorController;
+import de.dlh.lhind.testing.CommaSeparatedParser;
+import de.dlh.lhind.testing.Parser;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.page.InitialPage;
