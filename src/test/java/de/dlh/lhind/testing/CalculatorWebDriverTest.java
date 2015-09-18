@@ -28,7 +28,6 @@ public class CalculatorWebDriverTest {
         CalculatorPage calculatorPage = PageFactory.initElements(browser, CalculatorPage.class);
 
         calculatorPage.typeInput("1,3,0");
-        calculatorPage.calculate();
 
         assertThat(calculatorPage.getResult()).isEqualTo("4");
     }

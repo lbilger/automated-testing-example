@@ -40,7 +40,6 @@ public class CalculatorDroneTest {
     @Test
     public void webDriverAndUrlAreInjected(@InitialPage CalculatorPage calculatorPage) throws MalformedURLException {
         calculatorPage.typeInput("1,3,0");
-        calculatorPage.calculate();
 
         assertThat(calculatorPage.getResult()).isEqualTo("4");
     }
