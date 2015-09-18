@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
+import static com.google.common.base.Throwables.propagate;
+
 /**
  * Controller for the calculator example page.
  */
@@ -19,6 +21,11 @@ public class CalculatorController implements Serializable {
 
     public void calculate() {
         output = calculator.calculate(input);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw propagate(e);
+        }
     }
 
     public String getInput() {
